@@ -58,3 +58,6 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+/csharp/obj
+/csharp/bin
+/csharp/.vs

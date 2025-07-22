@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(source:*)",
+      "Bash(PYTHONPATH=/mnt/e/repos/s3-vector-voxco pytest tests/test_s3_vectors_api.py::test_what_does_query_vectors_actually_return -v -s)",
+      "Bash(git add:*)",
+      "Bash(PYTHONPATH=/mnt/e/repos/s3-vector-voxco python tests/test_performance_load.py)",
+      "mcp__perplexity-ask__perplexity_ask"
+    ],
+    "deny": []
+  }
+}
