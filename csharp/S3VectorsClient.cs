@@ -13,17 +13,23 @@ namespace S3VectorsExample
 {
     public class S3VectorsClient
     {
-        private readonly AmazonS3VectorsClient _client;
+        private readonly IAmazonS3Vectors _client;
         private readonly ILogger<S3VectorsClient> _logger;
         private readonly string _bucketName;
         private readonly string _indexName;
 
         public S3VectorsClient(string bucketName, string indexName, RegionEndpoint region, ILogger<S3VectorsClient> logger)
+            : this(bucketName, indexName, new AmazonS3VectorsClient(region), logger)
+        {
+        }
+
+        // Constructor for testing with mock client
+        public S3VectorsClient(string bucketName, string indexName, IAmazonS3Vectors client, ILogger<S3VectorsClient> logger)
         {
             _bucketName = bucketName;
             _indexName = indexName;
+            _client = client;
             _logger = logger;
-            _client = new AmazonS3VectorsClient(region);
         }
 
         public async Task<bool> CreateVectorBucketAsync()
