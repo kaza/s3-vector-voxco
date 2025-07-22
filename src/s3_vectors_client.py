@@ -83,9 +83,12 @@ class S3VectorsClient:
                 vectorBucketName=self.bucket_name,
                 indexName=self.index_name,
                 queryVector={'float32': embedding},
-                topK=k
+                topK=k,
+                returnMetadata=True,
+                returnDistance=True  # Also return distance scores
             )
-            return response.get('matches', [])
+            # S3 Vectors query_vectors returns results in 'vectors' key
+            return response.get('vectors', [])
         except ClientError as e:
             print(f"✗ Error searching: {e}")
             raise
