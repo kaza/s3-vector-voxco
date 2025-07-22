@@ -60,10 +60,11 @@ def test_document_to_s3_format():
     s3_format = doc.to_s3_vector_format()
     
     assert 'key' in s3_format
-    assert 'embedding' in s3_format
+    assert 'data' in s3_format
+    assert 'float32' in s3_format['data']
     assert 'metadata' in s3_format
     assert s3_format['metadata']['content'] == "Convert to S3 format"
-    assert len(s3_format['embedding']) == 128
+    assert len(s3_format['data']['float32']) == 128
 
 
 @pytest.mark.skip(reason="Requires actual S3 Vectors bucket - run manually")

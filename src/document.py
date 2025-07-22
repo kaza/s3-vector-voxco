@@ -28,7 +28,9 @@ class Document:
     def to_s3_vector_format(self) -> Dict:
         return {
             'key': self.key,
-            'embedding': self.embedding,
+            'data': {
+                'float32': self.embedding
+            },
             'metadata': {
                 'content': self.content
             }
